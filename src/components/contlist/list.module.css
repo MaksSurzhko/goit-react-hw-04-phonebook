@@ -1,0 +1,106 @@
+.ptitle{
+    color: rgb(51, 51, 51);
+    font-size: 40px;
+}
+
+.pform{
+    width: 600px;
+    padding: 20px;
+    border: 2px solid rgb(201, 106, 18);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.plabel{
+    color: rgb(51, 51, 51);
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pinput{
+    color: rgb(51, 51, 51);
+    border: 2px solid rgb(201, 106, 18);
+    border-radius: 10px;
+    height: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 300px;
+}
+
+.pbtn{
+    font-weight: 600;
+    padding: 0;
+    margin: 0;
+    width: 100px;
+    height: 40px;
+    color: rgb(51, 51, 51);
+    background-color: white;
+    border: 3px solid rgb(201, 106, 18);
+    border-radius: 10px;
+    transition: 300ms;
+    cursor: pointer;
+}
+
+.pbtn:hover{
+    border: 3px solid rgb(51, 51, 51);
+    color: rgb(201, 106, 18);
+    background-color: rgb(51, 51, 51);
+}
+
+.ctitle{
+    color: rgb(51, 51, 51);
+    font-size: 40px;
+}
+
+.clabel{
+    display: flex;
+    align-items: center;
+    color: rgb(51, 51, 51);
+    font-size: 30px;
+}
+
+.cinput{
+    transform: translateY(4px);
+    color: rgb(51, 51, 51);
+        border: 2px solid rgb(201, 106, 18);
+        border-radius: 10px;
+        margin-left: 20px;
+        height: 20px;
+        width: 200px;
+}
+
+.llist{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.item{
+    margin-bottom: 20px;
+    color: rgb(51, 51, 51);
+    font-size: 25px;
+}
+
+.bbtn{
+    
+    font-weight: 600;
+        padding: 0;
+        margin: 0;
+        margin-left: 40px;
+        width: 100px;
+        height: 34px;
+        color: rgb(51, 51, 51);
+        background-color: white;
+        border: 3px solid rgb(201, 106, 18);
+        border-radius: 10px;
+        transition: 300ms;
+        cursor: pointer;
+}
+
+.bbtn:hover{
+    border: 3px solid rgb(51, 51, 51);
+    color: rgb(201, 106, 18);
+    background-color: rgb(51, 51, 51);
+}
