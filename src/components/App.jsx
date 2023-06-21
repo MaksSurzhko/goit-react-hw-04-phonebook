@@ -1,3 +1,4 @@
+
 // import React, { Component } from "react";
 // import { nanoid } from "nanoid";
 // import pcss from "../components/phonebook/phonebook.module.css";
@@ -10,6 +11,19 @@
 //     contacts: [],
 //     filter: ""
 //   };
+
+//   componentDidMount() {
+//     const storedContacts = localStorage.getItem("contactss");
+//     if (storedContacts) {
+//       this.setState({ contacts: JSON.parse(storedContacts) });
+//     }
+//   }
+
+//   componentDidUpdate(_, prevState) {
+//     if (prevState.contacts !== this.state.contacts) {
+//       localStorage.setItem("contactss", JSON.stringify(this.state.contacts));
+//     }
+//   }
 
 //   handleInputChange = (event) => {
 //     const { name, value } = event.target;
@@ -59,9 +73,7 @@
 //       <div className={pcss.cont}>
 //         <h2 className={pcss.ptitle}>Phonebook</h2>
 
-//         <ContactForm
-//           onAddContact={this.handleAddContact}
-//         />
+//         <ContactForm onAddContact={this.handleAddContact} />
 
 //         <div className={pcss.ccont}>
 //           <h2 className={pcss.ctitle}>Contacts</h2>
@@ -95,7 +107,7 @@
 
 
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 import pcss from "../components/phonebook/phonebook.module.css";
 import ContactForm from "../components/contform/form";
@@ -105,6 +117,26 @@ import ContactList from "../components/contlist/list";
 const Phonebook = () => {
   const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState("");
+
+  useEffect(() => {
+    const storedContacts = localStorage.getItem("contactss");
+    if (storedContacts) {
+      setContacts(JSON.parse(storedContacts));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("contactss", JSON.stringify(contacts));
+  }, [contacts]);
+
+    useEffect(() => {
+    localStorage.clear();
+  }, []);
+
+  // const handleInputChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setFilter(value);
+  // };
 
   const handleAddContact = (name, number) => {
     const errorContact = contacts.find((contact) => contact.name === name);
@@ -134,6 +166,18 @@ const Phonebook = () => {
     setFilter(value);
   };
 
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      localStorage.removeItem("contactss");
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
   const filteredContacts = contacts.filter((contact) =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
@@ -158,7 +202,11 @@ const Phonebook = () => {
   );
 };
 
+export default Phonebook;
+
 export const App = () => {
+
+
   return (
     <div
       style={{
@@ -170,4 +218,3 @@ export const App = () => {
     </div>
   );
 };
-
