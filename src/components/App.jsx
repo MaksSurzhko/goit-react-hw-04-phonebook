@@ -107,6 +107,28 @@
 
 
 
+ // useEffect(() => {
+  //   const storedContacts = localStorage.getItem("contactss");
+  //   if (storedContacts) {
+  //     setContacts(JSON.parse(storedContacts));
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   localStorage.setItem("contactss", JSON.stringify(contacts));
+  // }, [contacts]);
+
+  //   useEffect(() => {
+  //   localStorage.clear();
+  // }, []);
+
+  // const handleInputChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setFilter(value);
+  // };
+
+
+
 import React, { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 import pcss from "../components/phonebook/phonebook.module.css";
@@ -118,25 +140,20 @@ const Phonebook = () => {
   const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState("");
 
-  useEffect(() => {
-    const storedContacts = localStorage.getItem("contactss");
-    if (storedContacts) {
-      setContacts(JSON.parse(storedContacts));
+
+ useEffect(() => {
+    const storedContacts = JSON.parse(window.localStorage.getItem("contacts"));
+    if (storedContacts && storedContacts.length) {
+      setContacts(storedContacts);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("contactss", JSON.stringify(contacts));
+    if (contacts.length) {
+      window.localStorage.setItem("contacts", JSON.stringify(contacts));
+    }
   }, [contacts]);
 
-    useEffect(() => {
-    localStorage.clear();
-  }, []);
-
-  // const handleInputChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setFilter(value);
-  // };
 
   const handleAddContact = (name, number) => {
     const errorContact = contacts.find((contact) => contact.name === name);
